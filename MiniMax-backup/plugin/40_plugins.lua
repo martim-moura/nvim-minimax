@@ -143,7 +143,6 @@ end)
 -- snippet files. They are organized in 'snippets/' directory (mostly) per language.
 -- 'mini.snippets' is designed to work with it as seamlessly as possible.
 -- See `:h MiniSnippets.gen_loader.from_lang()`.
---
 later(function() add({ 'https://github.com/rafamadriz/friendly-snippets' }) end)
 
 -- Honorable mentions =========================================================
@@ -156,9 +155,10 @@ later(function() add({ 'https://github.com/rafamadriz/friendly-snippets' }) end)
 -- If you need them to work elsewhere, consider using other package managers.
 --
 -- You can use it like so:
-now_if_args(function() add({ 'https://github.com/mason-org/mason.nvim' })
-  require("mason").setup { firewall = { enabled = true } }
-end)
+-- now_if_args(function()
+--   add({ 'https://github.com/mason-org/mason.nvim' })
+--   require('mason').setup()
+-- end)
 
 -- Beautiful, usable, well maintained color schemes outside of 'mini.nvim' and
 -- have full support of its highlight groups. Use if you don't like 'miniwinter'

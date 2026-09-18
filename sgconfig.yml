@@ -1,0 +1,6 @@
+ruleDirs:
+- /home/martim/.config/nvim-minimax/rules
+testConfigs:
+- testDir: /home/martim/.config/nvim-minimax/rule-tests
+utilDirs:
+- /home/martim/.config/nvim-minimax/utils

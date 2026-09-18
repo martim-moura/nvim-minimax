@@ -95,14 +95,6 @@ end)
 -- - `:h MiniNotify.config` for some of common configuration examples.
 now(function() require('mini.notify').setup() end)
 
-local diag_code_mappings = {
-    ERROR = { duration = 5000, hl_group = 'DiagnosticError'  },
-    WARN  = { duration = 5000, hl_group = 'DiagnosticWarn'   },
-    INFO  = { duration = 5000, hl_group = 'DiagnosticInfo'   },
-    DEBUG = { duration = 5000,    hl_group = 'DiagnosticHint'   },
-    TRACE = { duration = 0,    hl_group = 'DiagnosticOk'     },
-    OFF   = { duration = 0,    hl_group = 'MiniNotifyNormal' },
-  }
 -- Session management. A thin wrapper around `:h mksession` that consistently
 -- manages session files. Example usage:
 -- - `<Leader>sn` - start new session
@@ -234,14 +226,13 @@ now_if_args(function()
   -- Add common bookmarks for every explorer. Example usage inside explorer:
   -- - `'c` to navigate into your config directory
   -- - `g?` to see available bookmarks
-  local additional_marks = (function()
+  local add_marks = function()
     MiniFiles.set_bookmark('c', vim.fn.stdpath('config'), { desc = 'Config' })
     local vimpack_plugins = vim.fn.stdpath('data') .. '/site/pack/core/opt'
     MiniFiles.set_bookmark('p', vimpack_plugins, { desc = 'Plugins' })
     MiniFiles.set_bookmark('w', vim.fn.getcwd, { desc = 'Working directory' })
-    MiniFiles.set_bookmark('r', '~/rust_workspace/', { desc = 'Rust workspace' })
+  end
   Config.new_autocmd('User', 'MiniFilesExplorerOpen', add_marks, 'Add bookmarks')
-end)
 end)
 
 -- Miscellaneous small but useful functions. Example usage:
@@ -273,12 +264,6 @@ end)
 
 -- Extra 'mini.nvim' functionality.
 --
-
-  -- Customize with fourth argument inside a function wrapper
-vim.ui.select = function(items, opts, on_choice)
-    local start_opts = { window = { config = { width = vim.o.columns } } }
-    return MiniPick.ui_select(items, opts, on_choice, start_opts)
-  end
 -- See also:
 -- - `:h MiniExtra.pickers` - pickers. Most are mapped in `<Leader>f` group.
 --   Calling `setup()` makes 'mini.pick' respect 'mini.extra' pickers.

@@ -15,6 +15,7 @@ return {
     -- Reduce very long list of triggers for better 'mini.completion' experience
     client.server_capabilities.completionProvider.triggerCharacters =
       { '.', ':', '#', '(' }
+    vim._resolve_bufnr(buf_id)
 
     -- Use this function to define buffer-local mappings and behavior that depend
     -- on attached client or only makes sense if there is language server attached.
@@ -25,8 +26,8 @@ return {
       -- Define runtime properties. Use 'LuaJIT', as it is built into Neovim.
       runtime = { version = 'LuaJIT', path = vim.split(package.path, ';') },
       workspace = {
-        -- Don't analyze code from submodules
-        ignoreSubmodules = true,
+        -- analyze code from submodules
+        ignoreSubmodules = false,
         -- Add Neovim's methods for easier code writing
         library = { vim.env.VIMRUNTIME },
       },
