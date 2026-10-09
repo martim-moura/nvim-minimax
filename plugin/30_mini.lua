@@ -592,6 +592,11 @@ later(function()
   MiniKeymap.map_multistep('i', '<CR>', { 'pmenu_accept', 'minipairs_cr' })
   -- On `<BS>` just try to account for pairs from 'mini.pairs'
   MiniKeymap.map_multistep('i', '<BS>', { 'minipairs_bs' })
+
+  -- Exit Terminal mode with double `<Esc><Esc>` pressed in quick succession
+  -- (default 200 ms between presses). First `<Esc>` acts immediately
+  -- (e.g. dismisses terminal prompt), second one exits to Normal mode.
+  MiniKeymap.map_combo('t', '<Esc><Esc>', '<C-\\><C-n>')
 end)
 
 -- Window with text overview. It is displayed on the right hand side. Can be used

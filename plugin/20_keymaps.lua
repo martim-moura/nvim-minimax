@@ -14,6 +14,17 @@ local nmap = function(lhs, rhs, desc)
   vim.keymap.set('n', lhs, rhs, { desc = desc })
 end
 
+-- Navigate to previous/next buffer in buffer list
+-- Note: `<C-b>` / `<C-f>` override default half-page scroll, which is also
+-- available as `<PageUp>` / `<PageDown>`
+nmap('H', '<Cmd>bprevious<CR>', 'Previous buffer')
+nmap('L', '<Cmd>bnext<CR>', 'Next buffer')
+nmap('<C-b>', '<Cmd>bprevious<CR>', 'Previous buffer')
+nmap('<C-f>', '<Cmd>bnext<CR>', 'Next buffer')
+
+-- Clear current search highlighting (search itself is not stopped)
+nmap('<Esc>', '<Cmd>nohlsearch<CR>', 'Clear search highlight')
+
 -- Paste linewise before/after current line
 -- Usage: `yiw` to yank a word and `]p` to put it on the next line.
 nmap('[p', '<Cmd>exe "iput! " . v:register<CR>', 'Paste Above')
